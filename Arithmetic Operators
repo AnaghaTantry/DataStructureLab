@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+    char operator;
+    float a,b,result;
+    printf("Enter the arithmetic operator:(+,-,*,/): ");
+    scanf("%c",&operator);
+    printf("Enter the first operand: ");
+    scanf("%f",&a);
+    printf("Enter the second operand: ");
+    scanf("%f",&b);
+    switch(operator)
+    {
+    case'+':
+        result=a+b;
+        break;
+    case'-':
+        result=a-b;
+        break;
+    case'*':
+        result=a*b;
+        break;
+    case '/':
+        if(b!=0)
+        {
+        result=a/b;
+        }
+        else{
+            printf("Error:Division by zero is not allowed");
+            return 1;
+        }
+        break;
+    default:
+        printf("Invalid operator.\n");
+        return 1;
+    }
+    printf("Result: %f",result);
+    return 0;
+}
+
