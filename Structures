@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Student {
+    int rollNo;
+    char name[50];
+    int semester;
+    int marks[3];
+};
+void details(struct Student *s) {
+    printf("Enter Roll No: ");
+    scanf("%d", &s->rollNo);
+    printf("Enter Name: ");
+    scanf("%s", s->name);
+    printf("Enter Semester: ");
+    scanf("%d", &s->semester);
+    printf("Enter Marks in 3 subjects: ");
+    for (int i = 0; i < 3; i++) {
+        scanf("%d", &s->marks[i]);
+    }
+}
+void display(struct Student *s) {
+    printf("Roll No: %d\n", s->rollNo);
+    printf("Name: %s\n", s->name);
+    printf("Semester: %d\n", s->semester);
+    printf("Marks in 3 subjects: ");
+    for (int i = 0; i < 3; i++) {
+        printf("%d ", s->marks[i]);
+    }
+    printf("\n");
+}
+void calculate(struct Student *s, int n) {
+    printf("\nStudent-wise Total Marks:\n");
+    for (int i = 0; i < n; i++) {
+        int total = 0;
+        printf("Student %d: ", i + 1);
+        for (int j = 0; j < 3; j++) {
+            total += s[i].marks[j];
+        }
+        printf("Total Marks: %d\n", total);
+    }
+    printf("\nSubject-wise Total Marks:\n");
+    for (int i = 0; i < 3; i++) {
+        int total = 0;
+        printf("Subject %d: ", i + 1);
+        for (int j = 0; j < n; j++) {
+            total += s[j].marks[i];
+        }
+        printf("Total Marks: %d\n", total);
+    }
+}
+int main() {
+    struct Student s[5];
+    printf("Student Details:\n");
+    for (int i = 0; i < 5; i++) {
+        printf("Enter details for student %d:\n", i + 1);
+        details(&s[i]);
+    }
+    printf("\nDisplaying details of 5 students:\n");
+    for (int i = 0; i < 5; i++) {
+        printf("Details of student %d:\n", i + 1);
+        display(&s[i]);
+    }
+    calculate(s, 5);
+    return 0;
+}
