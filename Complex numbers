@@ -1,0 +1,50 @@
+#include <stdio.h>
+
+typedef struct complex {
+    int realno, imgno;
+} num;
+
+int main() {
+    num a, b, sum, sub;
+    int option;
+
+
+    do {
+        printf("*******MAIN MENU*******");
+        printf("\n 1. Read the complex number: ");
+        printf("\n 2. Display the complex number: ");
+        printf("\n 3. Add the complex number: ");
+        printf("\n 4. Subtract the complex number: ");
+        printf("\n 5. Exit");
+        printf("\n Enter the option: ");
+        scanf("%d", &option);
+
+        switch (option) {
+            case 1:
+                printf("\n Enter the real part and imaginary part of the first complex number: ");
+                scanf("%d %d", &a.realno, &a.imgno);
+                printf("\n Enter the real part and imaginary part of the second complex number: ");
+                scanf("%d %d", &b.realno, &b.imgno);
+                break;
+            case 2:
+                printf("\n The complex numbers are %d + %di and %d + %di\n", a.realno, a.imgno, b.realno, b.imgno);
+                break;
+            case 3:
+                sum.realno = a.realno + b.realno;
+                sum.imgno = a.imgno + b.imgno;
+                printf("\n The sum of complex numbers is %d + %di\n", sum.realno, sum.imgno);
+                break;
+            case 4:
+                sub.realno = a.realno - b.realno;
+                sub.imgno = a.imgno - b.imgno;
+                printf("\n The difference of complex numbers is %d + %di\n", sub.realno, sub.imgno);
+                break;
+            case 5:
+                printf("Exiting\n");
+                return 0;
+            default:
+                printf("Enter a valid option\n");
+        }
+    } while (option != 5);
+    return 0;
+}
