@@ -1,0 +1,84 @@
+#include <stdio.h>
+#define MAX 100
+int arr[MAX];
+int n = 0;
+void create() {
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
+    printf("Enter %d elements for the array:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    printf("Array of size %d created successfully.\n", n);
+}
+void display() {
+    if (n == 0) {
+        printf("Array is empty\n");
+        return;
+    }
+    printf("Array elements:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+void insert(int elem, int pos) {
+    if (n >= MAX || pos < 0 || pos > n) {
+        printf("Invalid insertion\n");
+        return;
+    }
+    for (int i = n; i > pos; i--) {
+        arr[i] = arr[i - 1];
+    }
+    arr[pos] = elem;
+    n++;
+    printf("Element %d inserted at position %d\n", elem, pos);
+}
+void delete(int pos) {
+    if (n == 0 || pos < 0 || pos >= n) {
+        printf("Invalid deletion\n");
+        return;
+    }
+    int item = arr[pos];
+    for (int i = pos; i < n - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+    n--;
+    printf("Element %d deleted from position %d\n", item, pos);
+}
+int main() {
+    create();
+    int choice, elem, pos;
+    while (1) {
+        printf("\nArray Operations Menu:\n");
+        printf("1. Insert Element\n");
+        printf("2. Delete Element\n");
+        printf("3. Display Array Elements\n");
+        printf("4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+        switch (choice) {
+            case 1:
+                printf("Enter the element to insert: ");
+                scanf("%d", &elem);
+                printf("Enter the position to insert: ");
+                scanf("%d", &pos);
+                insert(elem, pos);
+                break;
+            case 2:
+                printf("Enter the position to delete: ");
+                scanf("%d", &pos);
+                delete(pos);
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                printf("Exiting the program.\n");
+                exit(0);
+            default:
+                printf("Invalid choice. Please enter a valid option.\n");
+        }
+    }
+    return 0;
+}
